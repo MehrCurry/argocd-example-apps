@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: ditto-init-
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+spec:
+  template:
+    spec:
+      containers:
+
+      - name: init
+        image: alpine
+        args:
+        - /bin/sh
+        - -ec
+        - "echo Running!"
+      restartPolicy: Never
+  backoffLimit: 4
